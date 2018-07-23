@@ -50,9 +50,8 @@ list(APPEND pslite_LINKER_LIBS_L "ipHlpApi.lib" "ws2_32.lib")
 endif()
 
 list(APPEND SOURCE ${proto_srcs}) 
-add_library(pslite ${SOURCE}) 
+add_library(pslite ${SOURCE})
 
-target_link_libraries(pslite ${pslite_LINKER_LIBS})
 
 # FindProtobuf behavior changed from cmake 3.6 onwards
 IF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 3.6)
@@ -73,3 +72,5 @@ set(pslite_LINKER_LIBS ${pslite_LINKER_LIBS_L} PARENT_SCOPE)
 set(pslite_LINKER_LIBS_RELEASE ${pslite_LINKER_LIBS_L_RELEASE} PARENT_SCOPE)
 set(pslite_LINKER_LIBS_DEBUG ${pslite_LINKER_LIBS_L_DEBUG} PARENT_SCOPE)
 set(pslite_INCLUDE_DIR ${pslite_INCLUDE_DIR_L} PARENT_SCOPE)
+
+target_link_libraries(pslite ${pslite_LINKER_LIBS_L} ${pslite_LINKER_LIBS_L_RELEASE})
